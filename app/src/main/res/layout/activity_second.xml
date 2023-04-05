@@ -1,20 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/indir2"
     tools:context=".SecondAct">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="After Splash"
-        android:textSize="34sp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="136dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="135dp"
+        android:layout_marginBottom="-80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logo" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="70dp">
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="35dp"
+            android:scrollbarThumbHorizontal="@android:color/transparent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="#D8EBD8"
+                    android:maxHeight="40dip"
+                    android:text="New Button1"
+                    android:textColor="#007A6E"
+                    android:textStyle="bold"
+                    app:strokeColor="#008578"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="#D8EBD8"
+                    android:maxHeight="40dip"
+
+                    android:text="New Button1"
+                    android:textColor="#007A6E"
+                    android:textStyle="bold"
+                    app:backgroundTint="@android:color/transparent"
+                    app:strokeColor="#008578"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="#D8EBD8"
+                    android:maxHeight="40dip"
+
+                    android:text="New Button1"
+                    android:textColor="#007A6E"
+                    android:textStyle="bold"
+                    app:backgroundTint="@android:color/transparent"
+                    app:strokeColor="#008578"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="#D8EBD8"
+                    android:maxHeight="40dip"
+
+                    android:text="New Button1"
+                    android:textColor="#007A6E"
+                    android:textStyle="bold"
+                    app:backgroundTint="@android:color/transparent"
+                    app:strokeColor="#008578"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="#D8EBD8"
+                    android:maxHeight="40dip"
+
+                    android:text="New Button1"
+                    android:textColor="#007A6E"
+                    android:textStyle="bold"
+                    app:backgroundTint="@android:color/transparent"
+                    app:strokeColor="#008578"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="#D8EBD8"
+                    android:maxHeight="40dip"
+
+                    android:text="New Button1"
+                    android:textColor="#007A6E"
+                    android:textStyle="bold"
+                    app:backgroundTint="@android:color/transparent"
+                    app:strokeColor="#008578"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="#D8EBD8"
+                    android:maxHeight="40dip"
+
+                    android:text="New Button1"
+                    android:textColor="#007A6E"
+                    android:textStyle="bold"
+                    app:backgroundTint="@android:color/transparent"
+                    app:strokeColor="#008578"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="#D8EBD8"
+                    android:maxHeight="40dip"
+
+                    android:text="New Button1"
+                    android:textColor="#007A6E"
+                    android:textStyle="bold"
+                    app:backgroundTint="@android:color/transparent"
+                    app:strokeColor="#008578"
+                    app:strokeWidth="1dp" />
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+    </LinearLayout>
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:fillViewport="false">
+        <LinearLayout
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_height="match_parent">
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:background="@drawable/border"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:srcCompat="@drawable/renk" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        android:text="İsim Soyisim "
+
+                        android:textColor="#007A6E"
+                        android:textSize="20sp" />
+
+
+                </TableRow>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp" />
+                <TableRow
+                    android:background="@drawable/border"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <ImageView
+                        android:id="@+id/imageView11"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:srcCompat="@drawable/renk" />
+
+                    <TextView
+                        android:layout_width="199dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        android:text="İsim Soyisim "
+
+                        android:textColor="#007A6E"
+                        android:textSize="20sp" />
+                </TableRow>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp" />
+
+                <TableRow
+                    android:background="@drawable/border"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <ImageView
+                        android:id="@+id/imageView12"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:srcCompat="@drawable/renk" />
+
+                    <TextView
+                        android:layout_width="199dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        android:text="İsim Soyisim "
+
+                        android:textColor="#007A6E"
+                        android:textSize="20sp" />
+                </TableRow>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp" />
+
+                <TableRow
+                    android:background="@drawable/border"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <ImageView
+                        android:id="@+id/imageView13"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:srcCompat="@drawable/renk" />
+
+                    <TextView
+                        android:layout_width="199dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        android:text="İsim Soyisim "
+
+                        android:textColor="#007A6E"
+                        android:textSize="20sp" />
+                </TableRow>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp" />
+
+                <TableRow
+                    android:background="@drawable/border"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <ImageView
+                        android:id="@+id/imageView14"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:srcCompat="@drawable/renk" />
+
+                    <TextView
+                        android:layout_width="199dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        android:text="İsim Soyisim "
+
+                        android:textColor="#007A6E"
+                        android:textSize="20sp" />
+                </TableRow>
+
+            </TableLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
