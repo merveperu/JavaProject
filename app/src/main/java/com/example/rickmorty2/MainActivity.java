@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        },10000);
+        },3000);
 
     }
     //The Function to know app is stated first time or not?
