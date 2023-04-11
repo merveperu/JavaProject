@@ -16,15 +16,14 @@ import java.util.List;
 public class Adapter
         extends RecyclerView.Adapter<Adapter.MyView> {
 
-    // List with String type
+    //This is the list of texts
     private List<String> list;
     private int selectedPosition = -1;
 
 
     // View Holder class which
     // extends RecyclerView.ViewHolder
-    public class MyView
-            extends RecyclerView.ViewHolder {
+    public class MyView extends RecyclerView.ViewHolder {
 
         // Text View
         TextView textView;
