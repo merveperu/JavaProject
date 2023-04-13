@@ -16,11 +16,11 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends BaseAdapter {
 
-    private Context context;
+    //private Context context;
     private ArrayList<Characters> filmler;
 
-    public CustomAdapter(Context context, ArrayList<Characters> filmler) {
-        this.context = context;
+    public CustomAdapter(ArrayList<Characters> filmler) {
+        //this.context = context;
         this.filmler = filmler;
     }
 
@@ -45,7 +45,7 @@ public class CustomAdapter extends BaseAdapter {
 
         // inflate the layout for each list row
         if (view == null) {
-            view = LayoutInflater.from(context).
+            view = LayoutInflater.from(viewGroup.getContext()).
                     inflate(R.layout.card_design, viewGroup, false);
 
         }

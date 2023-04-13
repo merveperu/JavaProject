@@ -20,7 +20,6 @@ public class Adapter
     private List<String> list;
     private int selectedPosition = -1;
 
-
     // View Holder class which
     // extends RecyclerView.ViewHolder
     public class MyView extends RecyclerView.ViewHolder {
@@ -45,6 +44,7 @@ public class Adapter
                     int position = getAdapterPosition();
                     // Update the selected position
                     setSelectedPosition(position);
+
                     // Notify adapter that item has changed to trigger a rebind and update the view
                     notifyDataSetChanged();
                 }

@@ -42,6 +42,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -53,6 +54,8 @@ public class SecondAct extends AppCompatActivity {
     String location_url = "https://rickandmortyapi.com/api/location";
 
     Adapter adapter;
+
+
     CustomAdapter customAdapter;
     RecyclerView rv;
 
@@ -77,15 +80,15 @@ public class SecondAct extends AppCompatActivity {
         rv.setLayoutManager(linearLayoutManager);
 
         button= new ArrayList<>();
+        filmler=new ArrayList<>();
 
         //Setting the button source----
         add_to_button();
+        //Setting gridview source----
+        filter_chars();
 
-        //Gridview
-        add_to_grid();
-
-
-
+        //get_single_char("https://rickandmortyapi.com/api/character/2");
+        //add_to_grid();
 
 
 
@@ -94,8 +97,134 @@ public class SecondAct extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
     }
-    //Functions
 
+
+
+    private void filter_chars() {
+
+        GridView gridView = (GridView) findViewById(R.id.gridView);
+        filmler = new ArrayList<Characters>();
+        String location_url = "https://rickandmortyapi.com/api/location/?name= Citadel Of Ricks";
+
+        requestQueue = Volley.newRequestQueue(this);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, location_url, null, new Response.Listener<JSONObject>() {
+
+            // Takes the response from the JSON request
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+
+                    JSONObject obj = new JSONObject(String.valueOf(response));
+                    JSONArray results = obj.getJSONArray("results");
+
+                    for (int i = 0; i < results.length(); i++) {
+                        //Bu lokasyonda yaşayan karakterlerin URL si
+                        //Bu URL den isim ve fotoğraf çekmeliyim
+                        JSONObject tutorialsObject = results.getJSONObject(i);
+                        JSONArray  URLs = tutorialsObject.getJSONArray("residents");
+                        String my_url;
+                        for(int j=0;j<5;j++){
+                            my_url=URLs.getString(j);
+                            Log.d("URL", "Çekilen URL: " + URLs.getString(j));
+                            get_single_char(my_url.toString());
+
+
+                        }
+
+                        // Adapter'e veri eklendiğini bildirin
+                        //adapter.notifyItemInserted(filmler.size() - 1);
+                    }
+                }
+                // Try and catch are included to handle any errors due to JSON
+                catch (JSONException e) {
+                    // If an error occurs, this prints the error to the log
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    // Handles errors that occur due to Volley
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Volley", "Error");
+                    }
+                }
+        );
+        // Adds the JSON object request "obreq" to the request queue
+        requestQueue.add(jsonObjectRequest);
+        // Özel Adapter
+        CustomAdapter adapter = new CustomAdapter( filmler);
+        gridView.setAdapter(adapter);
+    }
+
+    private void get_single_char(String grid_url) {
+        GridView gridView=(GridView)findViewById(R.id.gridView);
+        filmler = new ArrayList<Characters>();
+
+
+
+        requestQueue = Volley.newRequestQueue(this);
+        //String grid_url="https://rickandmortyapi.com/api/character/2";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, grid_url,  null, new Response.Listener<JSONObject>() {
+
+            // Takes the response from the JSON request
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+
+                    JSONObject obj = new JSONObject(String.valueOf(response));
+
+
+
+
+                        String name = response.getString("name");
+                        String image = response.getString("image");
+
+                        Log.d("name of character", name.toString());
+                        Log.d("image url", image.toString());
+
+
+                        Characters film1 = new Characters(name.toString(),image.toString());
+                        filmler.add(film1);
+
+                    if (customAdapter == null) {
+                        // Adapter'i oluşturup RecyclerView'e atayın
+                        customAdapter = new CustomAdapter(filmler) {
+                        };
+                        gridView.setAdapter(customAdapter);
+                    }
+                        // Adapter'e veri eklendiğini bildirin
+                        //adapter.notifyItemInserted(filmler.size() - 1);
+
+                }
+                // Try and catch are included to handle any errors due to JSON
+                catch (JSONException e) {
+                    // If an error occurs, this prints the error to the log
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    // Handles errors that occur due to Volley
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Volley", "Error");
+                    }
+                }
+        );
+        // Adds the JSON object request "obreq" to the request queue
+        requestQueue.add(jsonObjectRequest);
+        // Özel Adapter
+        CustomAdapter adapter = new CustomAdapter( filmler);
+        gridView.setAdapter(adapter);
+    }
+
+
+
+
+    //Functions
+    //This function for adding "location" names into button
     private void add_to_button(){
 
         // Creates the Volley request queue
@@ -121,8 +250,9 @@ public class SecondAct extends AppCompatActivity {
                             rv.setAdapter(adapter);
                         }
                         // Adapter'e veri eklendiğini bildirin
-                        adapter.notifyItemInserted(button.size() - 1);
+                        //adapter.notifyItemInserted(button.size() - 1);
                     }
+
                 }
                 // Try and catch are included to handle any errors due to JSON
                 catch (JSONException e) {
@@ -146,6 +276,7 @@ public class SecondAct extends AppCompatActivity {
 
 
     }
+    //This function for adding "characters" into gridview
     private void add_to_grid(){
         GridView gridView=(GridView)findViewById(R.id.gridView);
         filmler = new ArrayList<Characters>();
@@ -177,7 +308,7 @@ public class SecondAct extends AppCompatActivity {
                         filmler.add(film1);
 
                         // Adapter'e veri eklendiğini bildirin
-                        adapter.notifyItemInserted(button.size() - 1);
+                        //adapter.notifyItemInserted(button.size() - 1);
                     }
                 }
                 // Try and catch are included to handle any errors due to JSON
@@ -197,13 +328,8 @@ public class SecondAct extends AppCompatActivity {
         );
         // Adds the JSON object request "obreq" to the request queue
         requestQueue.add(jsonObjectRequest);
-
-
-
         // Özel Adapter
-        CustomAdapter adapter = new CustomAdapter(this, filmler);
-
-
+        CustomAdapter adapter = new CustomAdapter( filmler);
         gridView.setAdapter(adapter);
     }
 }
