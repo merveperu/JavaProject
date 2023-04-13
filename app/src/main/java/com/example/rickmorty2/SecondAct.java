@@ -35,6 +35,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -52,15 +53,16 @@ public class SecondAct extends AppCompatActivity {
 
     //All locations
     String location_url = "https://rickandmortyapi.com/api/location";
-
+    ArrayList<String> button;
     Adapter adapter;
-
+    Adapter adapter2=new Adapter(button);
+    String clicked_button_url;
 
     CustomAdapter customAdapter;
     RecyclerView rv;
 
     //This is the ArayList for locations
-    ArrayList<String> button;
+
     ArrayList<Characters> filmler;
     LinearLayoutManager linearLayoutManager;
 
@@ -80,17 +82,25 @@ public class SecondAct extends AppCompatActivity {
         rv.setLayoutManager(linearLayoutManager);
 
         button= new ArrayList<>();
+
         filmler=new ArrayList<>();
 
         //Setting the button source----
         add_to_button();
+        clicked_button_url= adapter2.getAdapter_url().toString();
+        Log.d(TAG, "onResponse: SecondAct'te url yazdırma "+clicked_button_url);
+        Log.d(TAG, "onResponse: SecondAct'te buton tıklandı mı?: "+adapter2.clicked);
         //Setting gridview source----
+
+        //Her butona tıklanıldığında bu fonksiyonu çalıştırmam gerek.
+
+
         filter_chars();
 
+
+        //Bunları kullanma
         //get_single_char("https://rickandmortyapi.com/api/character/2");
         //add_to_grid();
-
-
 
         //It makes it full-screen page
         getSupportActionBar().hide();
@@ -100,15 +110,19 @@ public class SecondAct extends AppCompatActivity {
 
 
 
-    private void filter_chars() {
+
+    public void filter_chars() {
+
+
+
 
         GridView gridView = (GridView) findViewById(R.id.gridView);
         filmler = new ArrayList<Characters>();
-        String location_url = "https://rickandmortyapi.com/api/location/?name= Citadel Of Ricks";
+        //String location_url = "https://rickandmortyapi.com/api/location/?name= Citadel Of Ricks";
 
         requestQueue = Volley.newRequestQueue(this);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, location_url, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, adapter2.getAdapter_url(), null, new Response.Listener<JSONObject>() {
 
             // Takes the response from the JSON request
             @Override
@@ -124,7 +138,7 @@ public class SecondAct extends AppCompatActivity {
                         JSONObject tutorialsObject = results.getJSONObject(i);
                         JSONArray  URLs = tutorialsObject.getJSONArray("residents");
                         String my_url;
-                        for(int j=0;j<5;j++){
+                        for(int j=0;j<10;j++){
                             my_url=URLs.getString(j);
                             Log.d("URL", "Çekilen URL: " + URLs.getString(j));
                             get_single_char(my_url.toString());
@@ -158,7 +172,7 @@ public class SecondAct extends AppCompatActivity {
         gridView.setAdapter(adapter);
     }
 
-    private void get_single_char(String grid_url) {
+    public void get_single_char(String grid_url) {
         GridView gridView=(GridView)findViewById(R.id.gridView);
         filmler = new ArrayList<Characters>();
 
@@ -247,11 +261,13 @@ public class SecondAct extends AppCompatActivity {
                             // Adapter'i oluşturup RecyclerView'e atayın
                             adapter = new Adapter(button) {
                             };
+
                             rv.setAdapter(adapter);
                         }
                         // Adapter'e veri eklendiğini bildirin
                         //adapter.notifyItemInserted(button.size() - 1);
                     }
+
 
                 }
                 // Try and catch are included to handle any errors due to JSON

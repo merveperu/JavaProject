@@ -1,6 +1,7 @@
 package com.example.rickmorty2;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -19,7 +20,20 @@ public class Adapter
     //This is the list of texts
     private List<String> list;
     private int selectedPosition = -1;
+    boolean clicked=false;
+    public String getAdapter_url() {
+        return Adapter_url;
+    }
 
+    public void setAdapter_url(String adapter_url) {
+        Adapter_url = adapter_url;
+    }
+
+    String Adapter_url ="https://rickandmortyapi.com/api/location/?name= Earth (C-137)";
+
+
+
+    String clicked_data;
     // View Holder class which
     // extends RecyclerView.ViewHolder
     public class MyView extends RecyclerView.ViewHolder {
@@ -40,13 +54,22 @@ public class Adapter
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     // Get the clicked item position
                     int position = getAdapterPosition();
                     // Update the selected position
                     setSelectedPosition(position);
+                    //Butonun içindeki yazı
+                    clicked_data= textView.getText().toString();
+
+
+                    Adapter_url="https://rickandmortyapi.com/api/location/?name= "+clicked_data;
+                    setAdapter_url(Adapter_url);
+                    Log.d("TAG", "Tıklanılan butonun url si: "+getAdapter_url());
 
                     // Notify adapter that item has changed to trigger a rebind and update the view
                     notifyDataSetChanged();
+
                 }
             });
 
@@ -91,6 +114,8 @@ public class Adapter
     public void onBindViewHolder(final MyView holder,
                                  final int position)
     {
+
+
         holder.textView.setText(list.get(position));
 
         // Check if the current item is the selected item, and update the UI accordingly
@@ -118,5 +143,11 @@ public class Adapter
     // Method to get the selected position
     public int getSelectedPosition() {
         return selectedPosition;
+    }
+    public void setClicked_data(String clicked_data){
+        this.clicked_data=clicked_data;
+    }
+    public String getClicked_data(){
+        return clicked_data;
     }
 }
