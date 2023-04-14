@@ -1,7 +1,13 @@
 package com.example.rickmorty2;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +23,7 @@ import java.util.ArrayList;
 public class CustomAdapter extends BaseAdapter {
 
     //private Context context;
-    private ArrayList<Characters> filmler;
+      ArrayList<Characters> filmler;
 
     public CustomAdapter(ArrayList<Characters> filmler) {
         //this.context = context;
@@ -64,10 +70,21 @@ public class CustomAdapter extends BaseAdapter {
         ImageView ivBasicImage = (ImageView) view.findViewById(R.id.imageViewPoster);
         Picasso.get().load(mevcutFilm.getImage()).into(ivBasicImage);
 
+        //GridView'e tıklayınca gelen isim
+        view.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                String getText= mevcutFilm.getName();
+                Log.d("name:", "onClick: grid deki isim: "+getText.toString());
+                Intent intent =new Intent(v.getContext(),ThirdAct.class);
+                Bundle extras = new Bundle();
+                extras.putString("Username", getText);
+                intent.putExtras(extras);
+                v.getContext().startActivity(intent);
+            }
 
 
-
-
+        });
         return view;
     }
 }

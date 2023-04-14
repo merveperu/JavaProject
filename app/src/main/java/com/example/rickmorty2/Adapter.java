@@ -29,6 +29,7 @@ public class Adapter
         Adapter_url = adapter_url;
     }
 
+
     String Adapter_url ="https://rickandmortyapi.com/api/location/?name= Earth (C-137)";
 
 

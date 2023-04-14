@@ -2,9 +2,11 @@ package com.example.rickmorty2;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.Window;
@@ -18,8 +20,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,9 +61,10 @@ public class SecondAct extends AppCompatActivity {
     Adapter adapter;
     Adapter adapter2=new Adapter(button);
     String clicked_button_url;
-
+    GridView gridView ;
     CustomAdapter customAdapter;
     RecyclerView rv;
+    String names;
 
     //This is the ArayList for locations
 
@@ -88,15 +93,14 @@ public class SecondAct extends AppCompatActivity {
         //Setting the button source----
         add_to_button();
         clicked_button_url= adapter2.getAdapter_url().toString();
+
+
         Log.d(TAG, "onResponse: SecondAct'te url yazdırma "+clicked_button_url);
         Log.d(TAG, "onResponse: SecondAct'te buton tıklandı mı?: "+adapter2.clicked);
         //Setting gridview source----
-
-        //Her butona tıklanıldığında bu fonksiyonu çalıştırmam gerek.
-
+        gridView=findViewById(R.id.gridView);
 
         filter_chars();
-
 
         //Bunları kullanma
         //get_single_char("https://rickandmortyapi.com/api/character/2");
@@ -108,13 +112,7 @@ public class SecondAct extends AppCompatActivity {
 
     }
 
-
-
-
     public void filter_chars() {
-
-
-
 
         GridView gridView = (GridView) findViewById(R.id.gridView);
         filmler = new ArrayList<Characters>();
@@ -146,9 +144,11 @@ public class SecondAct extends AppCompatActivity {
 
                         }
 
+
                         // Adapter'e veri eklendiğini bildirin
                         //adapter.notifyItemInserted(filmler.size() - 1);
                     }
+
                 }
                 // Try and catch are included to handle any errors due to JSON
                 catch (JSONException e) {
@@ -170,6 +170,7 @@ public class SecondAct extends AppCompatActivity {
         // Özel Adapter
         CustomAdapter adapter = new CustomAdapter( filmler);
         gridView.setAdapter(adapter);
+
     }
 
     public void get_single_char(String grid_url) {
