@@ -88,14 +88,15 @@ public class ThirdAct extends AppCompatActivity {
                         //Bu bölümde oynayan karakterlerin URL leri
                         //Bu URL den id çekmeliyim çekmeliyim
                         JSONObject tutorialsObject = results.getJSONObject(i);
+
                         JSONArray  URLs = tutorialsObject.getJSONArray("characters");
+                        int id = tutorialsObject.getInt("id");
                         String my_url;
+                        //10 bölümün karakter listesi
+                        Log.d(TAG, "onResponse: "+"Burada bölümün karakterleri yazdırıyorum. Bölüm:"+id );
                         for(int j=0;j<10;j++){
                             my_url=URLs.getString(j);
                             Log.d("URL", "Çekilen URL: " + URLs.getString(j));
-
-
-
                         }
 
 
