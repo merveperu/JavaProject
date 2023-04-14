@@ -8,7 +8,7 @@
     tools:context=".ThirdAct">
 
     <ImageView
-        android:layout_below="@id/textView2"
+        android:layout_below="@id/headline"
         android:id="@+id/imageView2"
         android:layout_centerHorizontal="true"
 
@@ -20,7 +20,7 @@
          />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -37,11 +37,13 @@
 
         android:layout_width="wrap_content"
         android:layout_below="@+id/imageView2"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content">
 
         <TableRow
 
             android:layout_width="match_parent"
+
             android:layout_height="match_parent" >
 
             <TextView
@@ -234,14 +236,14 @@
                 android:layout_marginRight="20dp"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/createdat"
+                android:id="@+id/created"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
 
                 android:fontFamily="@font/avenir"
-                android:text="Crested time here"
+                android:text="Created time here"
                 android:textColor="#429A46"
                 android:textSize="22dp"
                 android:textStyle="normal" />
