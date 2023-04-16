@@ -54,7 +54,7 @@ import java.util.ArrayList;
 
 
 public class SecondAct extends AppCompatActivity {
-
+    //Hello trying github
     //All locations
     String location_url = "https://rickandmortyapi.com/api/location";
     ArrayList<String> button;
