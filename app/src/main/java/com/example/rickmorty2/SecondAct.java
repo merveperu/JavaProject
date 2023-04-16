@@ -138,7 +138,7 @@ public class SecondAct extends AppCompatActivity {
                         String my_url;
                         for(int j=0;j<10;j++){
                             my_url=URLs.getString(j);
-                            Log.d("URL", "Çekilen URL: " + URLs.getString(j));
+                            Log.d("URL", "Çekilen resident URL'leri: " + my_url);
                             get_single_char(my_url.toString());
 
 
@@ -197,10 +197,10 @@ public class SecondAct extends AppCompatActivity {
                         String image = response.getString("image");
 
                         Log.d("name of character", name.toString());
-                        Log.d("image url", image.toString());
+                        //Log.d("image url", image.toString());
 
 
-                        Characters film1 = new Characters(name.toString(),image.toString());
+                        Characters film1 = new Characters(name.toString(),image.toString(),grid_url.toString());
                         filmler.add(film1);
 
                     if (customAdapter == null) {
@@ -321,7 +321,7 @@ public class SecondAct extends AppCompatActivity {
                         Log.d(TAG, image.toString());
 
 
-                        Characters film1 = new Characters(name.toString(),image);
+                        Characters film1 = new Characters(name.toString(),image,grid_url);
                         filmler.add(film1);
 
                         // Adapter'e veri eklendiğini bildirin

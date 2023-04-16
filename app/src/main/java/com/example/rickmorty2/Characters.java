@@ -8,9 +8,20 @@ public class Characters {
     private String name;
     private String image;
 
-    public Characters(String name, String image) {
+    public String getCharacter_url() {
+        return character_url;
+    }
+
+    public void setCharacter_url(String character_url) {
+        this.character_url = character_url;
+    }
+
+    private String character_url;
+
+    public Characters(String name, String image,String character_url) {
         this.name = name;
         this.image = image;
+        this.character_url=character_url;
     }
 
     public String getName() {

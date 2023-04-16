@@ -2,12 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@drawable/indir2"
+
     tools:context=".ThirdAct">
 
     <ImageView
+
+
         android:layout_below="@id/headline"
         android:id="@+id/imageView2"
         android:layout_centerHorizontal="true"
@@ -35,16 +38,18 @@
 
     <TableLayout
 
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_below="@+id/imageView2"
         android:layout_marginTop="20dp"
-        android:layout_height="wrap_content">
+
+
+        android:layout_height="match_parent">
 
         <TableRow
 
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
 
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView3"
@@ -73,7 +78,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView4"
@@ -102,7 +107,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView5"
@@ -119,6 +124,7 @@
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/gender"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -132,7 +138,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView6"
@@ -148,9 +154,10 @@
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/origin"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/avenir"
                 android:text="Origin here"
@@ -161,7 +168,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView7"
@@ -177,9 +184,10 @@
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/location"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/avenir"
                 android:text="Location here"
@@ -190,7 +198,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView8"
@@ -206,9 +214,10 @@
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/episodes"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/avenir"
                 android:text="Episodes here"
@@ -220,10 +229,11 @@
         <TableRow
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView9"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -233,15 +243,16 @@
                 android:text="Created at\n(in API):"
                 android:textColor="#429A46"
                 android:textSize="22dp"
+
                 android:layout_marginRight="20dp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/created"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/avenir"
                 android:text="Created time here"
                 android:textColor="#429A46"

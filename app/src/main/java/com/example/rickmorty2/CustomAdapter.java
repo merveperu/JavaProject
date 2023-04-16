@@ -74,7 +74,7 @@ public class CustomAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String getText= mevcutFilm.getName();
+                String getText= mevcutFilm.getCharacter_url();
                 Log.d("name:", "onClick: grid deki isim: "+getText.toString());
                 Intent intent =new Intent(v.getContext(),ThirdAct.class);
                 Bundle extras = new Bundle();

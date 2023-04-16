@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorSelected">#ECE5BC</color>
     <color name="colorNormal">#A6D89C</color>
+    <color name="colorfemale">#C28DDF</color>
+    <color name="colormale">#84A3E3</color>
 </resources>
