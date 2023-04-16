@@ -195,12 +195,13 @@ public class SecondAct extends AppCompatActivity {
 
                         String name = response.getString("name");
                         String image = response.getString("image");
+                        String gender= response.getString("gender");
 
                         Log.d("name of character", name.toString());
                         //Log.d("image url", image.toString());
 
 
-                        Characters film1 = new Characters(name.toString(),image.toString(),grid_url.toString());
+                        Characters film1 = new Characters(name.toString(),image.toString(),grid_url.toString(),gender);
                         filmler.add(film1);
 
                     if (customAdapter == null) {
@@ -321,8 +322,8 @@ public class SecondAct extends AppCompatActivity {
                         Log.d(TAG, image.toString());
 
 
-                        Characters film1 = new Characters(name.toString(),image,grid_url);
-                        filmler.add(film1);
+                        //Characters film1 = new Characters(name.toString(),image,grid_url);
+                        //filmler.add(film1);
 
                         // Adapter'e veri eklendiğini bildirin
                         //adapter.notifyItemInserted(button.size() - 1);

@@ -5,6 +5,7 @@ import static androidx.core.content.ContextCompat.startActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CustomAdapter extends BaseAdapter {
 
@@ -49,26 +51,40 @@ public class CustomAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
+        Characters mevcutFilm = (Characters) getItem(i);
+        String  my_gender = mevcutFilm.getGender();
+        Log.d("TAG", "gender of "+mevcutFilm.getName()+" is "+mevcutFilm.getGender() );
+
         // inflate the layout for each list row
         if (view == null) {
             view = LayoutInflater.from(viewGroup.getContext()).
                     inflate(R.layout.card_design, viewGroup, false);
 
         }
+        if(Objects.equals(my_gender, "Female")){
+            view.setBackgroundResource(R.drawable.female);
+        }
+        else if(Objects.equals(my_gender, "Male")){
+            view.setBackgroundResource(R.drawable.male);
+        }
+        else{
+            view.setBackgroundResource(R.drawable.corner);
+        }
 
 
-        Characters mevcutFilm = (Characters) getItem(i);
+
+
+
 
 
         TextView textViewFilmAdi = (TextView)view.findViewById(R.id.textViewFilmAdi);
-
         ImageView imageViewPoster = (ImageView) view.findViewById(R.id.imageViewPoster);
-
-
         textViewFilmAdi.setText(mevcutFilm.getName());
-        //imageViewPoster.setImageURI(Uri.parse(mevcutFilm.getImage()));
         ImageView ivBasicImage = (ImageView) view.findViewById(R.id.imageViewPoster);
         Picasso.get().load(mevcutFilm.getImage()).into(ivBasicImage);
+
+
+
 
         //GridView'e tıklayınca gelen isim
         view.setOnClickListener(new View.OnClickListener(){

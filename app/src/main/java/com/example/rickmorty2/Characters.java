@@ -7,6 +7,18 @@ import java.net.URL;
 public class Characters {
     private String name;
     private String image;
+    private String character_url;
+    private String gender;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+
 
     public String getCharacter_url() {
         return character_url;
@@ -16,12 +28,13 @@ public class Characters {
         this.character_url = character_url;
     }
 
-    private String character_url;
 
-    public Characters(String name, String image,String character_url) {
+
+    public Characters(String name, String image,String character_url,String gender) {
         this.name = name;
         this.image = image;
-        this.character_url=character_url;
+        this.character_url = character_url;
+        this.gender = gender;
     }
 
     public String getName() {
