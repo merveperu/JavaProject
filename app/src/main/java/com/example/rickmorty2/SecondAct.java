@@ -107,7 +107,15 @@ public class SecondAct extends AppCompatActivity{
                         JSONObject tutorialsObject = results.getJSONObject(i);
                         JSONArray  URLs = tutorialsObject.getJSONArray("residents");
                         String my_url;
-                        for(int j=0;j<URLs.length();j++){
+                        int my_size;
+
+                        if(URLs.length()>30){
+                            my_size=20;
+                        }
+                        else{
+                            my_size=URLs.length();
+                        }
+                        for(int j=0;j<my_size;j++){
 
                             Log.d("URL", "Çekilen resident URL'leri: " + URLs.getString(j));
                             get_single_char(URLs.getString(j));
