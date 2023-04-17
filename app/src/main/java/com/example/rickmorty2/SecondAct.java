@@ -4,56 +4,29 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.content.ClipData;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.view.Window;
 import android.os.Bundle;
-import android.os.Build;
 import android.view.WindowManager;
-import android.util.Log;
-
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.Response;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.button.MaterialButton;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.lang.reflect.Array;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 
-public class SecondAct extends AppCompatActivity {
+public class SecondAct extends AppCompatActivity{
+
     //Hello trying github
     //All locations
     String location_url = "https://rickandmortyapi.com/api/location";
@@ -76,6 +49,7 @@ public class SecondAct extends AppCompatActivity {
     // Defining the Volley request queue that handles the URL request concurrently
     RequestQueue requestQueue;
 
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +64,7 @@ public class SecondAct extends AppCompatActivity {
 
         filmler=new ArrayList<>();
 
+
         //Setting the button source----
         add_to_button();
         clicked_button_url= adapter2.getAdapter_url().toString();
@@ -100,11 +75,8 @@ public class SecondAct extends AppCompatActivity {
         //Setting gridview source----
         gridView=findViewById(R.id.gridView);
 
-        filter_chars();
 
-        //Bunları kullanma
-        //get_single_char("https://rickandmortyapi.com/api/character/2");
-        //add_to_grid();
+        //filter_chars();
 
         //It makes it full-screen page
         getSupportActionBar().hide();
@@ -112,15 +84,14 @@ public class SecondAct extends AppCompatActivity {
 
     }
 
-    public void filter_chars() {
 
-        GridView gridView = (GridView) findViewById(R.id.gridView);
+    public void filter_chars(String api_url) {
+
         filmler = new ArrayList<Characters>();
-        //String location_url = "https://rickandmortyapi.com/api/location/?name= Citadel Of Ricks";
 
         requestQueue = Volley.newRequestQueue(this);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, adapter2.getAdapter_url(), null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, api_url, null, new Response.Listener<JSONObject>() {
 
             // Takes the response from the JSON request
             @Override
@@ -136,10 +107,10 @@ public class SecondAct extends AppCompatActivity {
                         JSONObject tutorialsObject = results.getJSONObject(i);
                         JSONArray  URLs = tutorialsObject.getJSONArray("residents");
                         String my_url;
-                        for(int j=0;j<10;j++){
-                            my_url=URLs.getString(j);
-                            Log.d("URL", "Çekilen resident URL'leri: " + my_url);
-                            get_single_char(my_url.toString());
+                        for(int j=0;j<URLs.length();j++){
+
+                            Log.d("URL", "Çekilen resident URL'leri: " + URLs.getString(j));
+                            get_single_char(URLs.getString(j));
 
 
                         }
@@ -167,14 +138,13 @@ public class SecondAct extends AppCompatActivity {
         );
         // Adds the JSON object request "obreq" to the request queue
         requestQueue.add(jsonObjectRequest);
-        // Özel Adapter
-        CustomAdapter adapter = new CustomAdapter( filmler);
-        gridView.setAdapter(adapter);
+
 
     }
 
     public void get_single_char(String grid_url) {
         GridView gridView=(GridView)findViewById(R.id.gridView);
+
         filmler = new ArrayList<Characters>();
 
 
@@ -206,13 +176,13 @@ public class SecondAct extends AppCompatActivity {
 
                     if (customAdapter == null) {
                         // Adapter'i oluşturup RecyclerView'e atayın
-                        customAdapter = new CustomAdapter(filmler) {
-                        };
+                        customAdapter = new CustomAdapter(filmler);
                         gridView.setAdapter(customAdapter);
                     }
-                        // Adapter'e veri eklendiğini bildirin
-                        //adapter.notifyItemInserted(filmler.size() - 1);
 
+                    // Özel Adapter
+                    CustomAdapter my_custom_adapter = new CustomAdapter( filmler);
+                    gridView.setAdapter(my_custom_adapter);
                 }
                 // Try and catch are included to handle any errors due to JSON
                 catch (JSONException e) {
@@ -231,9 +201,8 @@ public class SecondAct extends AppCompatActivity {
         );
         // Adds the JSON object request "obreq" to the request queue
         requestQueue.add(jsonObjectRequest);
-        // Özel Adapter
-        CustomAdapter adapter = new CustomAdapter( filmler);
-        gridView.setAdapter(adapter);
+
+
     }
 
 
@@ -350,6 +319,8 @@ public class SecondAct extends AppCompatActivity {
         CustomAdapter adapter = new CustomAdapter( filmler);
         gridView.setAdapter(adapter);
     }
+
+
 }
 
 

@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.view.LayoutInflater;
 
@@ -21,6 +22,7 @@ public class Adapter
     private List<String> list;
     private int selectedPosition = -1;
     boolean clicked=false;
+
     public String getAdapter_url() {
         return Adapter_url;
     }
@@ -37,6 +39,10 @@ public class Adapter
     String clicked_data;
     // View Holder class which
     // extends RecyclerView.ViewHolder
+
+
+
+
     public class MyView extends RecyclerView.ViewHolder {
 
         // Text View
@@ -49,27 +55,25 @@ public class Adapter
             super(view);
 
             // initialise TextView with id
-            textView = (TextView)view
-                    .findViewById(R.id.tvTitle);
+            textView = (TextView)view.findViewById(R.id.tvTitle);
             // Set click listener for the button
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    clicked=true;
                     // Get the clicked item position
                     int position = getAdapterPosition();
                     // Update the selected position
                     setSelectedPosition(position);
                     //Butonun içindeki yazı
                     clicked_data= textView.getText().toString();
-
-
                     Adapter_url="https://rickandmortyapi.com/api/location/?name= "+clicked_data;
                     setAdapter_url(Adapter_url);
                     Log.d("TAG", "Tıklanılan butonun url si: "+getAdapter_url());
-
                     // Notify adapter that item has changed to trigger a rebind and update the view
                     notifyDataSetChanged();
+                    ((SecondAct) v.getContext()).filter_chars(getAdapter_url());
+
 
                 }
             });
@@ -103,6 +107,7 @@ public class Adapter
                         parent,
                         false);
 
+
         // return itemView
         return new MyView(itemView);
     }
@@ -127,6 +132,7 @@ public class Adapter
             // Reset the button color for non-selected items
             holder.textView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorNormal));
         }
+
     }
 
     // Override getItemCount which Returns

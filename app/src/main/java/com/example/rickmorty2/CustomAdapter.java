@@ -53,7 +53,7 @@ public class CustomAdapter extends BaseAdapter {
 
         Characters mevcutFilm = (Characters) getItem(i);
         String  my_gender = mevcutFilm.getGender();
-        Log.d("TAG", "gender of "+mevcutFilm.getName()+" is "+mevcutFilm.getGender() );
+        //Log.d("TAG", "gender of "+mevcutFilm.getName()+" is "+mevcutFilm.getGender() );
 
         // inflate the layout for each list row
         if (view == null) {
