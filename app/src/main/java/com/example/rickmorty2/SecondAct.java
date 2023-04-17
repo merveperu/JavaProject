@@ -108,7 +108,6 @@ public class SecondAct extends AppCompatActivity{
                         JSONArray  URLs = tutorialsObject.getJSONArray("residents");
                         String my_url;
                         int my_size;
-
                         if(URLs.length()>30){
                             my_size=20;
                         }
