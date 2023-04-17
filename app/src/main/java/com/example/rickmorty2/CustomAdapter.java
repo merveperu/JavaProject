@@ -73,10 +73,6 @@ public class CustomAdapter extends BaseAdapter {
 
 
 
-
-
-
-
         TextView textViewFilmAdi = (TextView)view.findViewById(R.id.textViewFilmAdi);
         ImageView imageViewPoster = (ImageView) view.findViewById(R.id.imageViewPoster);
         textViewFilmAdi.setText(mevcutFilm.getName());
@@ -97,6 +93,7 @@ public class CustomAdapter extends BaseAdapter {
                 extras.putString("Username", getText);
                 intent.putExtras(extras);
                 v.getContext().startActivity(intent);
+
             }
 
 

@@ -6,12 +6,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.WindowManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.Response;
+
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
@@ -23,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class SecondAct extends AppCompatActivity{
@@ -33,22 +41,17 @@ public class SecondAct extends AppCompatActivity{
     ArrayList<String> button;
     Adapter adapter;
     Adapter adapter2=new Adapter(button);
-    String clicked_button_url;
     GridView gridView ;
     CustomAdapter customAdapter;
     RecyclerView rv;
     String names;
-
     //This is the ArayList for locations
-
     ArrayList<Characters> filmler;
     LinearLayoutManager linearLayoutManager;
-
-
-
     // Defining the Volley request queue that handles the URL request concurrently
     RequestQueue requestQueue;
-
+    TextView my_no_text;
+    ImageView my_no_image;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -63,20 +66,25 @@ public class SecondAct extends AppCompatActivity{
         button= new ArrayList<>();
 
         filmler=new ArrayList<>();
-
-
+        my_no_image=findViewById(R.id.default_image);
+        my_no_image.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.select2));
+        my_no_text = findViewById(R.id.my_default);
         //Setting the button source----
         add_to_button();
-        clicked_button_url= adapter2.getAdapter_url().toString();
+        //Text shows if there is no button clicked
+
+        //when no button clicked at the beginning
 
 
-        Log.d(TAG, "onResponse: SecondAct'te url yazdırma "+clicked_button_url);
-        Log.d(TAG, "onResponse: SecondAct'te buton tıklandı mı?: "+adapter2.clicked);
+        my_no_text.setText("Please select a location!");
+        my_no_text.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+
+
+
+
+
         //Setting gridview source----
         gridView=findViewById(R.id.gridView);
-
-
-        //filter_chars();
 
         //It makes it full-screen page
         getSupportActionBar().hide();
@@ -87,8 +95,9 @@ public class SecondAct extends AppCompatActivity{
 
     public void filter_chars(String api_url) {
 
+        my_no_text.setText("");
+        my_no_image.setImageDrawable(null);
         filmler = new ArrayList<Characters>();
-
         requestQueue = Volley.newRequestQueue(this);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, api_url, null, new Response.Listener<JSONObject>() {
@@ -110,17 +119,35 @@ public class SecondAct extends AppCompatActivity{
                         int my_size;
                         if(URLs.length()>30){
                             my_size=20;
+                            for(int j=0;j<my_size;j++){
+
+                                Log.d("URL", "Çekilen resident URL'leri: " + URLs.getString(j));
+                                get_single_char(URLs.getString(j));
+
+
+                            }
+                        }
+                        else if(URLs.length()<30 & URLs.length()>0){
+                            my_size=URLs.length();
+                            for(int j=0;j<my_size;j++){
+
+                                Log.d("URL", "Çekilen resident URL'leri: " + URLs.getString(j));
+                                get_single_char(URLs.getString(j));
+
+
+                            }
                         }
                         else{
-                            my_size=URLs.length();
+                            //No residents
+                            Log.d(TAG, "onResponse: No residents here!");
+                            filmler =new ArrayList<>();
+                            CustomAdapter my_empty_adapter = new CustomAdapter(filmler);
+                            gridView.setAdapter(my_empty_adapter);
+                            my_no_text.setText("No Residents here!");
+
+
                         }
-                        for(int j=0;j<my_size;j++){
 
-                            Log.d("URL", "Çekilen resident URL'leri: " + URLs.getString(j));
-                            get_single_char(URLs.getString(j));
-
-
-                        }
 
 
                         // Adapter'e veri eklendiğini bildirin
