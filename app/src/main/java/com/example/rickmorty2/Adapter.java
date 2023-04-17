@@ -4,13 +4,10 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 import android.view.LayoutInflater;
-
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 // The adapter class which
@@ -22,38 +19,22 @@ public class Adapter
     private List<String> list;
     private int selectedPosition = -1;
     boolean clicked=false;
-
     public String getAdapter_url() {
         return Adapter_url;
     }
-
     public void setAdapter_url(String adapter_url) {
         Adapter_url = adapter_url;
     }
-
-
     String Adapter_url ="https://rickandmortyapi.com/api/location/?name= Earth (C-137)";
-
-
-
     String clicked_data;
-    // View Holder class which
-    // extends RecyclerView.ViewHolder
-
-
-
-
     public class MyView extends RecyclerView.ViewHolder {
 
         // Text View
         TextView textView;
 
-        // parameterised constructor for View Holder class
-        // which takes the view as a parameter
         public MyView(View view)
         {
             super(view);
-
             // initialise TextView with id
             textView = (TextView)view.findViewById(R.id.tvTitle);
             // Set click listener for the button
@@ -74,13 +55,8 @@ public class Adapter
                     notifyDataSetChanged();
                     ((SecondAct) v.getContext()).filter_chars(getAdapter_url());
 
-
                 }
             });
-
-
-
-
         }
     }
 
@@ -99,14 +75,13 @@ public class Adapter
                                      int viewType)
     {
 
-        // Inflate item.xml using LayoutInflator
+        // Inflate rv_item.xml using LayoutInflator
         View itemView
                 = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.rv_item,
                         parent,
                         false);
-
 
         // return itemView
         return new MyView(itemView);
@@ -121,9 +96,7 @@ public class Adapter
                                  final int position)
     {
 
-
         holder.textView.setText(list.get(position));
-
         // Check if the current item is the selected item, and update the UI accordingly
         if (position == getSelectedPosition()) {
             // Set the button color to indicate the selected item
@@ -146,15 +119,9 @@ public class Adapter
     public void setSelectedPosition(int position) {
         selectedPosition = position;
     }
-
     // Method to get the selected position
     public int getSelectedPosition() {
         return selectedPosition;
     }
-    public void setClicked_data(String clicked_data){
-        this.clicked_data=clicked_data;
-    }
-    public String getClicked_data(){
-        return clicked_data;
-    }
+
 }

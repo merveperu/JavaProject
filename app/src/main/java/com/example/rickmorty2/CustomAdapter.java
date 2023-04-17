@@ -1,12 +1,6 @@
 package com.example.rickmorty2;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,10 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 

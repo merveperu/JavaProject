@@ -1,23 +1,16 @@
 package com.example.rickmorty2;
 
 import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.Response;
-
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,12 +23,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 
 public class SecondAct extends AppCompatActivity{
 
-    //Hello trying github
     //All locations
     String location_url = "https://rickandmortyapi.com/api/location";
     ArrayList<String> button;
@@ -66,22 +58,16 @@ public class SecondAct extends AppCompatActivity{
         button= new ArrayList<>();
 
         filmler=new ArrayList<>();
+
         my_no_image=findViewById(R.id.default_image);
         my_no_image.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.select2));
         my_no_text = findViewById(R.id.my_default);
         //Setting the button source----
         add_to_button();
-        //Text shows if there is no button clicked
 
-        //when no button clicked at the beginning
-
-
+        //when no button clicked at the beginning set the text
         my_no_text.setText("Please select a location!");
         my_no_text.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-
-
-
-
 
         //Setting gridview source----
         gridView=findViewById(R.id.gridView);
@@ -91,8 +77,6 @@ public class SecondAct extends AppCompatActivity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
     }
-
-
     public void filter_chars(String api_url) {
 
         my_no_text.setText("");
@@ -123,18 +107,14 @@ public class SecondAct extends AppCompatActivity{
 
                                 Log.d("URL", "Çekilen resident URL'leri: " + URLs.getString(j));
                                 get_single_char(URLs.getString(j));
-
-
                             }
                         }
                         else if(URLs.length()<30 & URLs.length()>0){
                             my_size=URLs.length();
                             for(int j=0;j<my_size;j++){
 
-                                Log.d("URL", "Çekilen resident URL'leri: " + URLs.getString(j));
+                                  Log.d("URL", "Çekilen resident URL'leri: " + URLs.getString(j));
                                 get_single_char(URLs.getString(j));
-
-
                             }
                         }
                         else{
@@ -144,16 +124,8 @@ public class SecondAct extends AppCompatActivity{
                             CustomAdapter my_empty_adapter = new CustomAdapter(filmler);
                             gridView.setAdapter(my_empty_adapter);
                             my_no_text.setText("No Residents here!");
-
-
                         }
-
-
-
-                        // Adapter'e veri eklendiğini bildirin
-                        //adapter.notifyItemInserted(filmler.size() - 1);
                     }
-
                 }
                 // Try and catch are included to handle any errors due to JSON
                 catch (JSONException e) {
@@ -172,19 +144,14 @@ public class SecondAct extends AppCompatActivity{
         );
         // Adds the JSON object request "obreq" to the request queue
         requestQueue.add(jsonObjectRequest);
-
-
     }
 
     public void get_single_char(String grid_url) {
+
         GridView gridView=(GridView)findViewById(R.id.gridView);
-
         filmler = new ArrayList<Characters>();
-
-
-
         requestQueue = Volley.newRequestQueue(this);
-        //String grid_url="https://rickandmortyapi.com/api/character/2";
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, grid_url,  null, new Response.Listener<JSONObject>() {
 
             // Takes the response from the JSON request
@@ -194,16 +161,12 @@ public class SecondAct extends AppCompatActivity{
 
                     JSONObject obj = new JSONObject(String.valueOf(response));
 
-
-
-
                         String name = response.getString("name");
                         String image = response.getString("image");
                         String gender= response.getString("gender");
 
                         Log.d("name of character", name.toString());
                         //Log.d("image url", image.toString());
-
 
                         Characters film1 = new Characters(name.toString(),image.toString(),grid_url.toString(),gender);
                         filmler.add(film1);
@@ -239,10 +202,6 @@ public class SecondAct extends AppCompatActivity{
 
     }
 
-
-
-
-    //Functions
     //This function for adding "location" names into button
     private void add_to_button(){
 
@@ -272,8 +231,6 @@ public class SecondAct extends AppCompatActivity{
                         // Adapter'e veri eklendiğini bildirin
                         //adapter.notifyItemInserted(button.size() - 1);
                     }
-
-
                 }
                 // Try and catch are included to handle any errors due to JSON
                 catch (JSONException e) {
@@ -299,13 +256,12 @@ public class SecondAct extends AppCompatActivity{
     }
     //This function for adding "characters" into gridview
     private void add_to_grid(){
+
         GridView gridView=(GridView)findViewById(R.id.gridView);
         filmler = new ArrayList<Characters>();
-
-
-
         requestQueue = Volley.newRequestQueue(this);
         String grid_url="https://rickandmortyapi.com/api/character";
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, grid_url,  null, new Response.Listener<JSONObject>() {
 
             // Takes the response from the JSON request
@@ -324,12 +280,6 @@ public class SecondAct extends AppCompatActivity{
                         Log.d(TAG, name.toString());
                         Log.d(TAG, image.toString());
 
-
-                        //Characters film1 = new Characters(name.toString(),image,grid_url);
-                        //filmler.add(film1);
-
-                        // Adapter'e veri eklendiğini bildirin
-                        //adapter.notifyItemInserted(button.size() - 1);
                     }
                 }
                 // Try and catch are included to handle any errors due to JSON
