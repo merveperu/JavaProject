@@ -5,11 +5,14 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,7 +54,6 @@ public class ThirdAct extends AppCompatActivity {
     SimpleDateFormat simpleDateFormat;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -68,18 +70,30 @@ public class ThirdAct extends AppCompatActivity {
         image=findViewById(R.id.imageView2);
         created=findViewById(R.id.created);
 
+        //Back Button
+        ImageButton back = (ImageButton)findViewById(R.id.backToSecond);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                back_button();
+            }
+        });
 
         Bundle intentExtras = getIntent().getExtras();
         String currentChar = intentExtras.getString("Username");
-
         Log.d("TAG", "onCreate: Third Page "+currentChar);
-
         Log.d("TAG", "My character url inside OnCreate: "+currentChar);
         fetch(currentChar);
 
         //It makes it full-screen page
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+    }
+    private void back_button(){
+        Log.d(TAG, "onClick: Back Button Working");
+        Intent myIntent = new Intent(getApplicationContext(), SecondAct.class);
+        startActivity(myIntent);
+        finish();
     }
 
     private void fetch(String my_url) {
