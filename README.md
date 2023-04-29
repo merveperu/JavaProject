@@ -1,6 +1,6 @@
 # JavaProject
 Android App:
-The app is full screen.It has a splash screen. If user opens the app first time, Text is "Welcome", other times "Hello". After some time, this screen will change to another page. There is horizontal scrollview with buttons. Button texts is fetched from API. If a button is clicked it will be highlighted. Under the horizontal scrollview, there is gridview. If a button is clicked, gridview changes accordingly. If a gridview is clicked, it opens a new page that shows the character's informations.
+The app is full screen.It has a splash screen. If user opens the app first time, Text is "Welcome", other times "Hello". After some time, this screen will change to another page. There is horizontal scrollview with buttons. Button texts is fetched from API. If a button is clicked it will be highlighted. Under the horizontal scrollview, there is gridview. If a button is clicked, gridview changes accordingly. If the character is female, background color is pink, if male background is blue, if unknown then the background color is green. When gridview is clicked, it opens a new page that shows the character's informations.
  
  
  
